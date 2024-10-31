@@ -78,3 +78,11 @@ https://qiita.com/1104crf14/items/f260595da3767ade3a73
 https://qiita.com/kotarella1110/items/634f6fafeb33ae0f51dc
 
 akazuki.42.fr/php/index.html
+
+
+docker-compose
+	mariadbのfvolumeの指定の仕方
+	docker-composeで作ったネットワークについて
+	ポート、ネットワークについて
+	コンテナ間通信ができるか
+	unix socketではポートの指定ができない？

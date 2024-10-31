@@ -5,6 +5,6 @@ RUN apt update && \
 
 RUN apt install -y init systemd
 
-COPY 
+COPY ./nginx.conf /etc/nginx/
 
 CMD ["bash"]

@@ -12,12 +12,13 @@ RUN curl -O https://ja.wordpress.org/latest-ja.tar.gz && \
 	mv wordpress/* /var/www/html && \
 	rm -rf latest-ja.tar.gz wordpress
 
-RUN 
 #docker configの作成をしてwp core install
 RUN apt update &&\
 	apt install -y php-fpm && \
 	apt install -y php-mysql
 
 RUN mkdir /run/php
+
+COPY ./www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 CMD ["php-fpm7.4", "-F"]
