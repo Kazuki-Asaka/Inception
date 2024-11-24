@@ -74,7 +74,6 @@ https://qiita.com/hashiguchi1544/items/0cf5eebb3ae72b618ece
 https://nginx.org/en/docs/beginners_guide.html
 https://nginx.org/en/docs/dirindex.html
 
-https://qiita.com/1104crf14/items/f260595da3767ade3a73
 https://qiita.com/kotarella1110/items/634f6fafeb33ae0f51dc
 
 akazuki.42.fr/php/index.html
@@ -86,3 +85,18 @@ docker-compose
 	ポート、ネットワークについて
 	コンテナ間通信ができるか
 	unix socketではポートの指定ができない？
+
+https://zenn.dev/qljmssqh/articles/bc2d77262d5e12
+https://mariadb.com/kb/en/mariadb-server-docker-official-image-environment-variables/
+
+
+https://qiita.com/nakazawaken1/items/09d6cbef3dae6dbaf765
+
+docker compose
+https://docs.docker.jp/compose/networking.html
+https://docs.docker.jp/compose/compose-file/index.html#networks-top-level-element
+https://qiita.com/kenny_J_7/items/77de780d7193b75444c3
+https://qiita.com/kenny_J_7/items/77de780d7193b75444c3
+https://docs.docker.com/engine/network/drivers/bridge/
+\
+ARG とenv_fileの違い

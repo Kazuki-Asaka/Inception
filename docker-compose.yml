@@ -1,23 +1,67 @@
-version: '3.9'
-
 services:
   mariadb:
+    hostname: mariadb
     container_name: mariadb
     build: 
-      dockerfile: ./mariadb/dockerfile
+      dockerfile: ./src/mariadb/Dockerfile
       context: .
+      args:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_USER_PASSWORD: ${MYSQL_USER_PASSWORD}
+        MYSQL_DATA_BASE: ${MYSQL_DATA_BASE}
     volumes:
-      mariadb-DB:/var/lib/mysql
+      - mariadb-DB:/var/lib/mysql
+    networks:
+      - w_d_net
+
   wordpress:
     container_name: wordpress
     build: 
-      dockerfile: ./wordpress/dockerfile
+      dockerfile: ./src/wordpress/Dockerfile
       context: .
+    env_file:
+      - ./.env
+    volumes:
+      - wordpress-DB:/var/www/html
+    networks:
+      - w_d_net
+      - n_w_net
+    depends_on:
+      - mariadb
+
   nginx:
     container_name: nginx
     build: 
-      dockerfile: ./nginx/dockerfile
+      dockerfile: ./src/nginx/Dockerfile
       context: .
+    ports:
+      - "443:80"
+    networks:
+      - n_w_net
+    volumes:
+      - wordpress-DB:/var/www/html
+    restart: always
 
 volumes:
-  mariadb-DB
+  mariadb-DB:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data/sql_volume
+      o: bind
+  wordpress-DB:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data/wordpress_volume
+      o: bind
+
+networks:
+  n_w_net:
+    driver: bridge
+  w_d_net:
+    driver: bridge
+
+
+#volumeの定義についてdevice volumeのディレクトリはあらかじめ作っとくのか　今のままだとrootにつくられてしまう

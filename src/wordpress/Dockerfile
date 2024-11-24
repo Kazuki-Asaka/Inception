@@ -10,15 +10,22 @@ RUN curl -O https://ja.wordpress.org/latest-ja.tar.gz && \
 	tar xzf latest-ja.tar.gz && \
 	mkdir -p /var/www/html && \
 	mv wordpress/* /var/www/html && \
-	rm -rf latest-ja.tar.gz wordpress
+	rm -rf latest-ja.tar.gz wordpress  || { echo wordpressinstall failed 1>&2;  exit 1; }
 
-#docker configの作成をしてwp core install
+RUN chmod 755 /var/www/html
+
 RUN apt update &&\
 	apt install -y php-fpm && \
 	apt install -y php-mysql
 
 RUN mkdir /run/php
 
-COPY ./www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY ./src/wordpress/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
+RUN apt install -y mariadb-client
+
+COPY ./src/wordpress/install.sh /usr/bin/install.sh
+RUN chmod 775 /usr/bin/install.sh
+
+# ENTRYPOINT [ "/usr/bin/install.sh" ]
 CMD ["php-fpm7.4", "-F"]
