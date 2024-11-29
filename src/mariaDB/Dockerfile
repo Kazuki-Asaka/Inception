@@ -25,7 +25,9 @@ RUN service mariadb start && \
 		mysql -u root -e "CREATE USER ${MYSQL_USER} IDENTIFIED BY '${MYSQL_USER_PASSWORD}';" && \
 		mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO ${MYSQL_USER}@'%' with grant option;" && \
 		mysql -u root -e "FLUSH PRIVILEGES;";\
-	fi
+	fi &&\
+	mysql -u root -e "CREATE DATABASE mariadb;" && \
+	mysql -u root -e "use mariadb;"
 
 EXPOSE 3306
 
