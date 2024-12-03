@@ -25,7 +25,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - wordpress-DB:/var/www/html
+      - wordpress-DB:/var/www/html/wordpress
     networks:
       - w_d_net
       - n_w_net
@@ -39,12 +39,14 @@ services:
       dockerfile: ./src/nginx/Dockerfile
       context: .
     ports:
-      - "443:80"
+      - "80:80"
     networks:
       - n_w_net
     volumes:
-      - wordpress-DB:/var/www/html
+      - wordpress-DB:/var/www/html/wordpress
     restart: always
+    depends_on:
+      - wordpress
   
 volumes:
   mariadb-DB:
