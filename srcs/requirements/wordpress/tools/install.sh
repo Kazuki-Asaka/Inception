@@ -25,4 +25,6 @@ wp core install --title=${TITLE} \
                 --path="/var/www/html/wordpress" \
                 --allow-root || { echo core install failed 1>&2;  exit 1; }
 
+wp user create ${WORDPRESS_USER} ${WORDPRESS_USER_EMAIL} --role=editor --user_pass=${WORDPRESS_USER_PASSWORD} --allow-root
+
 php-fpm7.4 -F

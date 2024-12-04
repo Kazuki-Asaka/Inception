@@ -4,7 +4,7 @@ services:
     hostname: mariadb
     container_name: mariadb
     build: 
-      dockerfile: ./src/mariaDB/Dockerfile
+      dockerfile: ./requirements/mariaDB/Dockerfile
       context: .
       args:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -20,7 +20,7 @@ services:
   wordpress:
     container_name: wordpress
     build: 
-      dockerfile: ./src/wordpress/Dockerfile
+      dockerfile: ./requirements/wordpress/Dockerfile
       context: .
     env_file:
       - ./.env
@@ -36,7 +36,7 @@ services:
   nginx:
     container_name: nginx
     build: 
-      dockerfile: ./src/nginx/Dockerfile
+      dockerfile: ./requirements/nginx/Dockerfile
       context: .
     ports:
       - "443:443"
@@ -53,13 +53,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./data/sql_volume
+      device: ../data/sql_volume
       o: bind
   wordpress-DB:
     driver: local
     driver_opts:
       type: none
-      device: ./data/wordpress_volume
+      device: ../data/wordpress_volume
       o: bind
 
 networks:

@@ -20,11 +20,11 @@ RUN apt update &&\
 
 RUN mkdir /run/php
 
-COPY ./src/wordpress/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+COPY ./requirements/wordpress/tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 RUN apt install -y mariadb-client
 
-COPY ./src/wordpress/install.sh /usr/bin/install.sh
+COPY ./requirements/wordpress/tools/install.sh /usr/bin/install.sh
 RUN chmod 775 /usr/bin/install.sh
 
 ENTRYPOINT [ "/usr/bin/install.sh" ]

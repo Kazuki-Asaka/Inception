@@ -5,7 +5,7 @@ RUN apt update && \
 
 #RUN apt install -y init systemd
 
-COPY ./src/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./requirements/nginx/tools/nginx.conf /etc/nginx/nginx.conf
 
 RUN apt install openssl
 RUN mkdir /etc/nginx/ssl
