@@ -16,12 +16,12 @@ wp core config\
     --allow-root || { echo config create failed 1>&2;  exit 1; }
 
 
-wp core install --title=test \
-                --admin_user=wp_admin \
-                --admin_password=1234 \
-                --admin_email=abc@gmail.com \
+wp core install --title=${TITLE} \
+                --admin_user=${WORDPRESS_ADMIN_USER} \
+                --admin_password=${WORDPRESS_ADMIN_PASSWORD} \
+                --admin_email=${WORDPRESS_ADMIN_EMAIL} \
                 --skip-email \
-                --url=http://localhost \
+                --url=http://${DOMAIN_NAME} \
                 --path="/var/www/html/wordpress" \
                 --allow-root || { echo core install failed 1>&2;  exit 1; }
 

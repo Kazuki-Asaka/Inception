@@ -39,7 +39,7 @@ services:
       dockerfile: ./src/nginx/Dockerfile
       context: .
     ports:
-      - "80:80"
+      - "443:443"
     networks:
       - n_w_net
     volumes:
