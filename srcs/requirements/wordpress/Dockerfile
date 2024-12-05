@@ -11,8 +11,8 @@ RUN curl -O https://ja.wordpress.org/latest-ja.tar.gz && \
 	mkdir -p /var/www/html/wordpress && \
 	mv wordpress/* /var/www/html/wordpress && \
 	rm -rf latest-ja.tar.gz wordpress
-
-RUN chmod 755 /var/www/html/wordpress
+RUN chown -R www-data:www-data /var/www/html/wordpress
+RUN chmod -R 755 /var/www/html/wordpress
 
 RUN apt update &&\
 	apt install -y php-fpm && \

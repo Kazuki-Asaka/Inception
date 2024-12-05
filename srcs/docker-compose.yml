@@ -40,6 +40,8 @@ services:
       context: .
     ports:
       - "443:443"
+    env_file:
+      - ./.env
     networks:
       - n_w_net
     volumes:
@@ -53,13 +55,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ../data/sql_volume
+      device: "/home/akazuki/data/sql_volume"
       o: bind
   wordpress-DB:
     driver: local
     driver_opts:
       type: none
-      device: ../data/wordpress_volume
+      device: "/home/akazuki/data/wordpress_volume"
       o: bind
 
 networks:

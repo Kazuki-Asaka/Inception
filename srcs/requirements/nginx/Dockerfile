@@ -11,6 +11,8 @@ RUN apt install openssl
 RUN mkdir /etc/nginx/ssl
 RUN chmod 755 /etc/nginx/ssl
 RUN openssl genrsa -out /etc/nginx/ssl/server.key 2048
-RUN openssl req -new -key /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.csr -subj "/CN=localhost"
+RUN openssl req -new -key /etc/nginx/ssl/server.key -out /etc/nginx/ssl/server.csr -subj "/CN=akazuki.42.fr"
 RUN openssl x509 -days 3650 -req -signkey /etc/nginx/ssl/server.key -in /etc/nginx/ssl/server.csr -out /etc/nginx/ssl/server.crt
+
+RUN chmod 644 /etc/nginx/ssl/server.key
 CMD ["nginx", "-g", "daemon off;"]
